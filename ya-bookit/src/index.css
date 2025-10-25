@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+/* smooth font + dark base */
+:root { color-scheme: dark; }
+html, body, #root { height: 100%; }
+body {
+  background-color: #0A0E17;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* icon placeholder class (so Header doesn't error if you don't use lucide) */
+.i-lucide-map-pin { display:inline-block; width:1em; height:1em; border-radius:2px; background:linear-gradient(135deg,#22d3ee55,#ffffff22); }
