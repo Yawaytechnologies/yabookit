@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route, useLocation, Link } from "react-router-do
 /* Lazy pages (faster initial load) */
 const Landing = lazy(() => import("./pages/Landing"));
 const MovieDetails = lazy(() => import("./pages/MovieDetails"));
-const SeatSelect = lazy(() => import("./pages/SeatSelect"));
+const MovieDetailsBooking = lazy(() => import("../src/components/MovieDetailsBooking"));
 
 /* Smooth scroll to top on route change */
 function ScrollToTop() {
@@ -54,7 +54,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/MovieDetails" element={<MovieDetails />} />
-          <Route path="/show/:showId/seats" element={<SeatSelect />} />
+          <Route path="/MovieDetailsBooking" element={<MovieDetailsBooking />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

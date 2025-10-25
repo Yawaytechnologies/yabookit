@@ -254,7 +254,7 @@ function MovieCard({ movie, liked, onToggleLike, onWatchTrailer }) {
 
         <div className="mt-3 flex gap-2 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition">
           <Link
-            to={`/movie/${movie.id}`}
+            to={`/MovieDetailsBooking`}
             className="flex-1 text-center rounded-full bg-yellow-400 text-black font-semibold text-sm px-3 py-2 hover:bg-yellow-300 transition"
           >
             Book Now

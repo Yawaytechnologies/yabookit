@@ -3,21 +3,22 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Play } from "lucide-react";
 import TrailerModal from "../Moviepage/TrailerModal";
-import kgfhero from "../../assets/kgfhero1.jpg";
+import blackwidowHero from "../../assets/blackwidowHero.jpg";
 
 /* --- Slides (3 movies) with YouTube trailerId --- */
 const HERO_MOVIES = [
-  {
-  id: "kgf-2",
-  title: "KGF: CHAPTER 2",
-  backdrop: kgfhero, // local asset
-  genres: ["Action", "Drama", "Crime"],
-  rating: 8.6,
-  premiere: "BLOCKBUSTER HIT",
-  description:
-    "Rocky Bhai tightens his grip over the Kolar Gold Fields while new enemies rise and the past comes calling.",
-  trailerId: "JKa05nyUmuQ", // official trailer
-},
+ {
+    id: "black-widow",
+    title: "BLACK WIDOW",
+    backdrop: blackwidowHero, // <-- updated to local asset
+    genres: ["Action", "Adventure", "Sci-Fi"],
+    rating: 8.4,
+    premiere: "PREMIERING ON 6TH NOVEMBER",
+    description:
+      "At birth the Black Widow (aka Natasha Romanova) is given to the KGB, which grooms her to become its ultimate operative. When the U.S.S.R. breaks up, the government tries to kill her as the action moves to present-day New York, where she is a freelance operative.",
+    trailerId: "Fp9pNPdNwjI",
+  },
+
 
   {
     id: "dune-2",
