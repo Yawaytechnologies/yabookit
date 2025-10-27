@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route, useLocation, Link } from "react-router-dom";
-import { LottieLoader } from "./components/loaders/LottieLoader";
+import { SeatMapLoader } from "./components/loaders/SeatMapLoader";
 
 /* Lazy pages (must have default exports) */
 const Landing = lazy(() => import("./pages/Landing"));
@@ -17,16 +17,21 @@ function ScrollToTop() {
 }
 
 /* Polished popcorn fallback */
+
 function Fallback() {
   return (
-    <LottieLoader
-      src="https://lottie.host/5ef439ac-e5e3-4146-a6b2-baf556464c28/CFaaH3yoiE.lottie"
-      size={600} // big
+    <SeatMapLoader
       message="Finding showtimes & the best seats…"
-      className="min-h-screen bg-neutral-950 text-white" // full screen, readable text
+      className="bg-neutral-950 text-white"
+      size={72}          // bigger/smaller overall
+      rows={4}
+      cols={12}
+      withAisle
+      showLegend
     />
   );
 }
+
 
 /* Friendly 404 page */
 function NotFound() {

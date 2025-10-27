@@ -133,8 +133,7 @@ function TiltCard({ exp }) {
       ref={cardRef}
       onMouseMove={onMove}
       onMouseLeave={onLeave}
-      className="snap-start min-w-[84%] xs:min-w-[70%] sm:min-w-[380px] md:min-w-[420px] lg:min-w-[460px] relative"
-    >
+      className="relative w-full max-w-[320px] sm:max-w-[360px] md:max-w-[400px] lg:max-w-[440px] mx-auto"    >
       <div className="absolute inset-0 rounded-3xl p-[1px] [background:conic-gradient(from_180deg,rgba(234,179,8,.35),rgba(56,189,248,.35),rgba(236,72,153,.35),rgba(234,179,8,.35))]" />
       <div
         className="relative h-[230px] sm:h-[260px] md:h-[280px] rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl overflow-hidden"
