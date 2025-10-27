@@ -1,10 +1,11 @@
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route, useLocation, Link } from "react-router-dom";
+import { LottieLoader } from "./components/loaders/LottieLoader";
 
-/* Lazy pages (faster initial load) */
+/* Lazy pages (must have default exports) */
 const Landing = lazy(() => import("./pages/Landing"));
 const MovieDetails = lazy(() => import("./pages/MovieDetails"));
-const MovieDetailsBooking = lazy(() => import("../src/components/MovieDetailsBooking"));
+const MovieDetailsBooking = lazy(() => import("./components/MovieDetailsBooking")); // <-- fixed
 
 /* Smooth scroll to top on route change */
 function ScrollToTop() {
@@ -15,16 +16,15 @@ function ScrollToTop() {
   return null;
 }
 
-/* Cute fallback while pages load */
+/* Polished popcorn fallback */
 function Fallback() {
   return (
-    <div className="grid min-h-[60vh] place-items-center bg-transparent text-white">
-      <div className="rounded-2xl border border-white/10 bg-white/5 px-6 py-5 shadow-xl">
-        <div className="h-4 w-40 animate-pulse rounded bg-white/10 mb-3" />
-        <div className="h-3 w-64 animate-pulse rounded bg-white/10 mb-2" />
-        <div className="h-3 w-56 animate-pulse rounded bg-white/10" />
-      </div>
-    </div>
+    <LottieLoader
+      src="https://lottie.host/5ef439ac-e5e3-4146-a6b2-baf556464c28/CFaaH3yoiE.lottie"
+      size={600} // big
+      message="Finding showtimes & the best seats…"
+      className="min-h-screen bg-neutral-950 text-white" // full screen, readable text
+    />
   );
 }
 
@@ -48,13 +48,13 @@ function NotFound() {
 
 export default function App() {
   return (
-    <BrowserRouter /* if deploying to a subpath, add basename="/subpath" */>
+    <BrowserRouter /* add basename="/subpath" if deploying under a subpath */>
       <ScrollToTop />
       <Suspense fallback={<Fallback />}>
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/MovieDetails" element={<MovieDetails />} />
-          <Route path="/MovieDetailsBooking" element={<MovieDetailsBooking />} />
+          <Route path="/booking/:movieId" element={<MovieDetailsBooking />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

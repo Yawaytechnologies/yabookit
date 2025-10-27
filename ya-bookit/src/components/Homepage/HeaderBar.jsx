@@ -34,11 +34,11 @@ export default function HeaderBar() {
             <Link
               to="/"
               className="flex items-center gap-2"
-              aria-label="CINE MOVIES – Home"
+              aria-label="yabookit"
             >
               <img
                 src={Logo}
-                alt="CINE MOVIES"
+                alt="yabookit logo"
                 className="h-22 sm:h-28 w-auto object-contain select-none pointer-events-none"
                 draggable="false"
               />
