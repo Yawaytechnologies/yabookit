@@ -1,0 +1,61 @@
+/* === Popcorn PRO Loader =============================================== */
+/* Theme vars (override anywhere) */
+:root {
+  --pop-yellow: #ffe79a;   /* kernel body */
+  --pop-gold:   #f3d46b;   /* edge tone */
+  --bucket-red: #e74a4a;
+  --bucket-white: #ffffff;
+}
+
+.popcorn-pro {
+  --size: 140px;             /* control size */
+  width: var(--size);
+  height: calc(var(--size) * 1.1);
+  display: inline-block;
+  position: relative;
+  filter: drop-shadow(0 14px 28px rgba(0,0,0,.28));
+}
+
+/* bobbing bucket */
+.popcorn-pro .bucket {
+  animation: bucket-bob 1.7s ease-in-out infinite;
+  transform-origin: 100px 140px;
+}
+@keyframes bucket-bob {
+  0%, 100% { transform: translateY(0) rotate(-1.2deg); }
+  50%      { transform: translateY(2px) rotate(1.2deg); }
+}
+
+/* popped kernels flying */
+.popcorn-pro .pop {
+  animation: pop-flight var(--dur,1.35s) cubic-bezier(.2,.7,.2,1) infinite;
+  animation-delay: var(--delay,0s);
+  transform-origin: center;
+  opacity: 0;
+}
+@keyframes pop-flight {
+  0%   { transform: translate(0,0) scale(.6) rotate(var(--rot,-12deg)); opacity: 0; }
+  12%  { opacity: 1; }
+  58%  { transform: translate(var(--dx,-24px), -64px) scale(1.06) rotate(calc(var(--rot,-12deg) * -1)); }
+  100% { transform: translate(calc(var(--dx,-24px) * 1.25), -94px) scale(.92) rotate(calc(var(--rot,-12deg) * 1.2)); opacity: 0; }
+}
+
+/* tiny sparkles for delight */
+.popcorn-pro .spark {
+  animation: spark 1.2s ease-out infinite;
+  animation-delay: var(--delay,0s);
+  transform-origin: center;
+  opacity: 0;
+}
+@keyframes spark {
+  0%   { transform: translate(0,0) scale(.4) rotate(0deg); opacity: 0; }
+  20%  { opacity: .9; }
+  100% { transform: translate(0,-28px) scale(1) rotate(180deg); opacity: 0; }
+}
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .popcorn-pro .bucket,
+  .popcorn-pro .pop,
+  .popcorn-pro .spark { animation: none !important; }
+}
