@@ -10,5 +10,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* e.g. in src/index.css or global.css */
+:root {
+  --header-h: 72px; /* must match HEADER_H above */
+}
+
+/* src/index.css (or your global CSS) */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+
 /* icon placeholder class (so Header doesn't error if you don't use lucide) */
 .i-lucide-map-pin { display:inline-block; width:1em; height:1em; border-radius:2px; background:linear-gradient(135deg,#22d3ee55,#ffffff22); }
