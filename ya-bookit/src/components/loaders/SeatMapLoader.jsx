@@ -107,7 +107,7 @@ export function SeatMapLoader({
           )}
 
           {Array.from({ length: rows }).map((_, r) => {
-            const rowYDelay = r * 0.08;
+            const _rowYDelay = r * 0.08;
             return (
               <div key={r} className="flex gap-3 md:gap-4 justify-center">
                 {Array.from({ length: cols }).map((_, c) => {

@@ -138,7 +138,7 @@ export default function MoviesPage() {
                         "px-3 py-1.5 text-xs rounded-lg border whitespace-nowrap transition",
                         active
                           ? "bg-yellow-500 text-black border-yellow-400 shadow-[0_6px_20px_-10px_rgba(234,179,8,.8)]"
-                          : "bg-transparent border-white/10 text-white/80 hover:bg:white/10"
+                          : "bg-transparent border-white/10 text-white/80 hover:bg-white/10" // fixed typo here
                       )}
                     >
                       {f.label}
@@ -199,8 +199,119 @@ export default function MoviesPage() {
         movie={trailerMovie}
       />
 
-      {/* Slide-over filters (optional: keep your previous drawer if you liked it) */}
-      {/* You can reuse your previous FilterDrawer here if needed */}
+      {/* Slide-over Filters (uses showFilters + the imported lists) */}
+      {showFilters && (
+        <div className="fixed inset-0 z-50">
+          {/* backdrop */}
+          <button
+            aria-label="Close filters"
+            onClick={() => setShowFilters(false)}
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+          />
+          {/* panel */}
+          <aside className="absolute right-0 top-0 h-full w-full sm:w-[420px] bg-[#0B0F1E] border-l border-white/10 shadow-2xl">
+            <div className="flex items-center justify-between px-5 py-4 border-b border-white/10">
+              <h3 className="text-lg font-bold">Filters</h3>
+              <button
+                onClick={() => setShowFilters(false)}
+                className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-sm hover:bg-white/10"
+              >
+                <X className="w-4 h-4" /> Close
+              </button>
+            </div>
+
+            <div className="p-5 space-y-6 overflow-y-auto h-[calc(100%-64px)]">
+              {/* Genres */}
+              <section>
+                <h4 className="text-sm font-semibold text-white/80 mb-2">Genres</h4>
+                <div className="flex flex-wrap gap-2">
+                  {allGenres.map((g) => {
+                    const active = genres.has(g);
+                    return (
+                      <button
+                        key={g}
+                        onClick={() => toggleSet(setGenres, genres, g)}
+                        className={classNames(
+                          "px-3 py-1.5 text-xs rounded-lg border transition",
+                          active
+                            ? "bg-yellow-500 text-black border-yellow-400"
+                            : "bg-white/5 text-white/80 border-white/10 hover:bg-white/10"
+                        )}
+                      >
+                        {g}
+                      </button>
+                    );
+                  })}
+                </div>
+              </section>
+
+              {/* Languages */}
+              <section>
+                <h4 className="text-sm font-semibold text-white/80 mb-2">Languages</h4>
+                <div className="flex flex-wrap gap-2">
+                  {allLangs.map((l) => {
+                    const active = langs.has(l);
+                    return (
+                      <button
+                        key={l}
+                        onClick={() => toggleSet(setLangs, langs, l)}
+                        className={classNames(
+                          "px-3 py-1.5 text-xs rounded-lg border transition",
+                          active
+                            ? "bg-yellow-500 text-black border-yellow-400"
+                            : "bg-white/5 text-white/80 border-white/10 hover:bg-white/10"
+                        )}
+                      >
+                        {l}
+                      </button>
+                    );
+                  })}
+                </div>
+              </section>
+
+              {/* Formats */}
+              <section>
+                <h4 className="text-sm font-semibold text-white/80 mb-2">Formats</h4>
+                <div className="flex flex-wrap gap-2">
+                  {allFormats.map((f) => {
+                    const active = formats.has(f);
+                    return (
+                      <button
+                        key={f}
+                        onClick={() => toggleSet(setFormats, formats, f)}
+                        className={classNames(
+                          "px-3 py-1.5 text-xs rounded-lg border transition",
+                          active
+                            ? "bg-yellow-500 text-black border-yellow-400"
+                            : "bg-white/5 text-white/80 border-white/10 hover:bg-white/10"
+                        )}
+                      >
+                        {f}
+                      </button>
+                    );
+                  })}
+                </div>
+              </section>
+
+              <div className="pt-2 flex items-center gap-3">
+                <button
+                  onClick={clearAll}
+                  className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm hover:bg-white/10"
+                >
+                  Clear all
+                </button>
+                <button
+                  onClick={() => setShowFilters(false)}
+                  className="inline-flex items-center gap-2 rounded-xl bg-yellow-500 text-black px-4 py-2 text-sm font-semibold hover:bg-yellow-400"
+                >
+                  Apply
+                </button>
+              </div>
+            </div>
+          </aside>
+        </div>
+      )}
+      {/* End slide-over */}
     </div>
   );
 }
@@ -253,10 +364,10 @@ function MovieCard({ movie, liked, onToggleLike, onWatchTrailer }) {
         </div>
 
         <div className="mt-3 flex gap-2 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition">
-           <Link
-        to={`/booking/${movie.id}`}
-        className="flex-1 text-center rounded-full bg-yellow-400 text-black font-semibold text-sm px-3 py-2 hover:bg-yellow-300 transition"
-      >
+          <Link
+            to={`/booking/${movie.id}`}
+            className="flex-1 text-center rounded-full bg-yellow-400 text-black font-semibold text-sm px-3 py-2 hover:bg-yellow-300 transition"
+          >
             Book Now
           </Link>
           <button
