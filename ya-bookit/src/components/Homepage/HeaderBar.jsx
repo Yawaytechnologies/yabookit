@@ -89,15 +89,15 @@ export default function HeaderBar() {
             <nav className="hidden md:flex items-center gap-8">
               <NavItem to="/" label="HOME" end />
               <NavItem to="/MovieDetails" label="MOVIES" />
-              <NavItem to="/theatres" label="THEATRES" />
+              <NavItem to="/events" label="Events" />
               <NavItem to="/offers" label="OFFERS" />
             </nav>
 
             {/* actions */}
             <div className="flex items-center gap-2 sm:gap-4">
               <Link
-                to="/buy"
-                className="hidden sm:inline-flex items-center rounded-full bg-yellow-400 text-black text-sm font-semibold shadow px-4 py-2 transition-colors duration-150 hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-yellow-400/60"
+                to="/MovieDetails"
+                className="hidden sm:inline-flex items-center rounded-full bg-yellow-400 text-black px-4 py-2 text-sm font-semibold shadow hover:bg-yellow-300 transition"
               >
                 BUY TICKETS
               </Link>

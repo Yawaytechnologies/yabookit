@@ -1,11 +1,20 @@
+// src/App.jsx
 import React, { Suspense, lazy } from "react";
-import { BrowserRouter, Routes, Route, useLocation, Link } from "react-router-dom";
-import { SeatMapLoader } from "./components/loaders/SeatMapLoader";
+import { BrowserRouter, Routes, Route, useLocation, Link, Outlet } from "react-router-dom";
+import { LottieLoader } from "./components/loaders/LottieLoader";
+import ShowtimesPage from "./pages/ShowtimesPage";
+import SeatSelectionPage from "./pages/SeatSelectionPage";
+import HeaderBar from "./components/Homepage/HeaderBar";
+import SiteFooter from "./components/Homepage/SiteFooter";
+
 
 /* Lazy pages (must have default exports) */
 const Landing = lazy(() => import("./pages/Landing"));
 const MovieDetails = lazy(() => import("./pages/MovieDetails"));
-const MovieDetailsBooking = lazy(() => import("./components/MovieDetailsBooking")); // <-- fixed
+// const MovieDetailsBooking = lazy(() => import("./components/MovieDetailsBooking"));
+// ⬇️ match your real file name
+const MovieOverviewPage = lazy(() => import("./pages/MovieOverview"));
+const EventPage = lazy(() => import("./pages/EventPage"));
 
 /* Smooth scroll to top on route change */
 function ScrollToTop() {
@@ -51,18 +60,47 @@ function NotFound() {
   );
 }
 
+function Layout() {
+  // keep this in one place so you can reuse
+  const HEADER_H = 72; // px (adjust to your header height)
+
+  return (
+    <div className="min-h-screen bg-[#0b0f1e] text-white">
+      {/* Fixed header on top */}
+      <div className="fixed inset-x-0 top-0 z-[1000]">
+        {/* optional subtle backdrop & border to ensure readability */}
+        <div className="backdrop-blur supports-[backdrop-filter]:bg-black/35 bg-black/60 border-b border-white/10">
+          <HeaderBar />
+        </div>
+      </div>
+
+      {/* App body with top padding = header height so content never goes under header */}
+      <div style={{ paddingTop: HEADER_H }} className="min-h-screen flex flex-col">
+        <Suspense fallback={<BodyFallback />}>
+          <Outlet />
+        </Suspense>
+        <SiteFooter />
+      </div>
+    </div>
+  );
+}
+
 export default function App() {
   return (
-    <BrowserRouter /* add basename="/subpath" if deploying under a subpath */>
+    <BrowserRouter>
       <ScrollToTop />
-      <Suspense fallback={<Fallback />}>
-        <Routes>
-          <Route path="/" element={<Landing />} />
+      <Routes>
+        <Route element={<Layout />}>
+          <Route index element={<Landing />} />
           <Route path="/MovieDetails" element={<MovieDetails />} />
-          <Route path="/booking/:movieId" element={<MovieDetailsBooking />} />
+          {/* <Route path="/booking/:movieId" element={<MovieDetailsBooking />} /> */}
+          <Route path="/movies/:id" element={<MovieOverviewPage />} />
+          <Route path="/movie/:id/showtimes" element={<ShowtimesPage />} />
+          <Route path="/movie/:id/seats" element={<SeatSelectionPage />} />
+          <Route path="/events" element={<EventPage/>} />
           <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Suspense>
+        </Route>
+      </Routes>
     </BrowserRouter>
   );
 }
