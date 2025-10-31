@@ -52,14 +52,14 @@ export default function HeaderBar() {
 
               {/* Update paths below to your actual routes */}
               <NavItem to="/MovieDetails" label="MOVIES" />
-              <NavItem to="/theatres" label="THEATRES" />
+              <NavItem to="/events" label="Events" />
               <NavItem to="/offers" label="OFFERS" />
             </nav>
 
             {/* actions */}
             <div className="flex items-center gap-4">
               <Link
-                to="/buy"
+                to="/MovieDetails"
                 className="hidden sm:inline-flex items-center rounded-full bg-yellow-400 text-black px-4 py-2 text-sm font-semibold shadow hover:bg-yellow-300 transition"
               >
                 BUY TICKETS
