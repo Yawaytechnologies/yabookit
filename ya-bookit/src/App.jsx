@@ -1,7 +1,7 @@
 // src/App.jsx
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route, useLocation, Link, Outlet } from "react-router-dom";
-import { LottieLoader } from "./components/loaders/LottieLoader";
+import { SeatMapLoader } from "./components/loaders/SeatMapLoader";
 import ShowtimesPage from "./pages/ShowtimesPage";
 import SeatSelectionPage from "./pages/SeatSelectionPage";
 import HeaderBar from "./components/Homepage/HeaderBar";
@@ -27,7 +27,7 @@ function ScrollToTop() {
 
 /* Polished popcorn fallback */
 
-function Fallback() {
+function BodyFallback() {
   return (
     <SeatMapLoader
       message="Finding showtimes & the best seats…"
