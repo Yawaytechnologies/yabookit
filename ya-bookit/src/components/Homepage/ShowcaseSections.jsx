@@ -13,19 +13,19 @@ import {
 
 /* -------------------- Data -------------------- */
 const NOW_SHOWING = [
-  { id: 1, title: "Joker: Folie à Deux", poster: "https://images.unsplash.com/photo-1594908900066-3f47337549d8?w=400&h=600&fit=crop", rating: 8.2, genre: "Drama" },
-  { id: 2, title: "Furiosa", poster: "https://images.unsplash.com/photo-1571847140471-1d7766e825ea?w=400&h=600&fit=crop", rating: 8.5, genre: "Action" },
-  { id: 3, title: "Kingdom of the Planet", poster: "https://images.unsplash.com/photo-1574267432644-f65c8e4c1f89?w=400&h=600&fit=crop", rating: 7.8, genre: "Sci-Fi" },
-  { id: 4, title: "Migration", poster: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=400&h=600&fit=crop", rating: 7.2, genre: "Animation" },
-  { id: 5, title: "The Creator", poster: "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=400&h=600&fit=crop", rating: 8.1, genre: "Sci-Fi" },
-  { id: 6, title: "Rebel Moon", poster: "https://images.unsplash.com/photo-1518676590629-3dcbd9c5a5c9?w=400&h=600&fit=crop", rating: 7.6, genre: "Adventure" },
+  { id: 1, title: "Joker: Folie à Deux", poster: "https://upload.wikimedia.org/wikipedia/en/e/e8/Joker_-_Folie_%C3%A0_Deux_poster.jpg", rating: 8.2, genre: "Drama" },
+  { id: 2, title: "Furiosa", poster: "https://upload.wikimedia.org/wikipedia/en/3/34/Furiosa_A_Mad_Max_Saga.jpg", rating: 8.5, genre: "Action" },
+  { id: 3, title: "Kingdom of the Planet", poster: "https://upload.wikimedia.org/wikipedia/en/c/cf/Kingdom_of_the_Planet_of_the_Apes_poster.jpg", rating: 7.8, genre: "Sci-Fi" },
+  { id: 4, title: "Migration", poster: "https://upload.wikimedia.org/wikipedia/en/c/cb/Migration_%282023_film%29.jpg", rating: 7.2, genre: "Animation" },
+{ id: 5, title: "The Creator", poster: "https://upload.wikimedia.org/wikipedia/en/9/94/The_Creator_2023_poster.jpg", rating: 8.1, genre: "Sci-Fi" },
+{ id: 6, title: "Rebel Moon", poster: "https://upload.wikimedia.org/wikipedia/en/1/19/Rebel_moon_part1_poster.jpg", rating: 7.6, genre: "Adventure" },
 ];
 
 const UPCOMING = [
-  { id: 1, title: "Deadpool 3", poster: "https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=400&h=600&fit=crop", release: "May 2024" },
-  { id: 2, title: "Inside Out 2", poster: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400&h=600&fit=crop", release: "June 2024" },
-  { id: 3, title: "Bad Boys 4", poster: "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=400&h=600&fit=crop", release: "June 2024" },
-  { id: 4, title: "A Quiet Place", poster: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=400&h=600&fit=crop", release: "June 2024" },
+ { id: 1, title: "Deadpool 3", poster: "https://upload.wikimedia.org/wikipedia/en/4/4c/Deadpool_%26_Wolverine_poster.jpg", release: "May 2024" },
+{ id: 2, title: "Inside Out 2", poster: "https://upload.wikimedia.org/wikipedia/en/f/f7/Inside_Out_2_poster.jpg", release: "June 2024" },
+{ id: 3, title: "Bad Boys 4", poster: "https://upload.wikimedia.org/wikipedia/en/8/8b/Bad_Boys_Ride_or_Die_%282024%29_poster.jpg", release: "June 2024" },
+{ id: 4, title: "A Quiet Place", poster: "https://upload.wikimedia.org/wikipedia/en/e/e7/A_Quiet_Place_Day_One_%282024%29_poster.jpg", release: "June 2024" },
 ];
 
 const EXPERIENCES = [
@@ -36,139 +36,24 @@ const EXPERIENCES = [
 
 /* -------------------- Helpers -------------------- */
 const cn = (...c) => c.filter(Boolean).join(" ");
-const scrollByX = (ref, x) => ref.current?.scrollBy({ left: x, behavior: "smooth" });
+
 
 /* -------------------- Exported Hybrid -------------------- */
 export default function ShowcaseSectionsHybrid() {
   return (
     <>
-      {/* Keep NEW: Experiences (tilt rail) */}
-      <ExperiencesRail items={EXPERIENCES} />
-
       {/* Restore OLD: Now Showing grid */}
       <NowShowingGrid items={NOW_SHOWING} />
 
       {/* Restore OLD: Coming Soon grid */}
       <ComingSoonGrid items={UPCOMING} />
 
-      {/* Keep NEW: Newsletter + Footer */}
+      {/* Keep NEW: Experiences (tilt rail) */}
+      <ExperiencesRail items={EXPERIENCES} />
+
+      {/* Keep NEW: Newsletter */}
       <NewsletterSplit />
-      <FooterMinimal />
     </>
-  );
-}
-
-/* ======================= Experiences (Tilt Rail - from V2) ======================= */
-function ExperiencesRail({ items }) {
-  const railRef = useRef(null);
-  return (
-    <section className="relative py-14 sm:py-20 bg-gradient-to-b from-black via-[#0A0E1E] to-gray-950">
-      {/* background decorations */}
-      <div className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(80%_60%_at_50%_10%,black,transparent)]">
-        <div className="absolute inset-0 opacity-[0.06] bg-[linear-gradient(to_right,rgba(255,255,255,.2)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,.2)_1px,transparent_1px)] bg-[size:42px_42px]" />
-        <div className="absolute -top-16 -left-10 w-72 h-72 rounded-full bg-cyan-500/10 blur-3xl" />
-        <div className="absolute -bottom-24 -right-16 w-96 h-96 rounded-full bg-orange-500/10 blur-3xl" />
-      </div>
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-end justify-between gap-6">
-          <div>
-            <p className="text-[11px] tracking-[0.25em] text-white/60 mb-2">EXPERIENCES</p>
-            <h2 className="text-3xl sm:text-4xl font-extrabold">Choose your format</h2>
-            <p className="mt-2 text-white/60 max-w-xl">
-              From seat-shaking thrills to precision audio, pick how you want to feel the movie.
-            </p>
-          </div>
-          <div className="hidden sm:flex items-center gap-2">
-            <button
-              onClick={() => scrollByX(railRef, -360)}
-              className="w-10 h-10 rounded-full bg-white/10 border border-white/15 hover:bg-white/20 flex items-center justify-center"
-              aria-label="Scroll experiences left"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <button
-              onClick={() => scrollByX(railRef, 360)}
-              className="w-10 h-10 rounded-full bg-white/10 border border-white/15 hover:bg-white/20 flex items-center justify-center"
-              aria-label="Scroll experiences right"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
-          </div>
-        </div>
-
-        <div
-          ref={railRef}
-          className="mt-8 flex gap-4 sm:gap-6 overflow-x-auto snap-x snap-mandatory pb-2 scroll-smooth [-ms-overflow-style:none] [scrollbar-width:none]"
-          style={{ scrollbarWidth: "none" }}
-        >
-          {items.map((exp, i) => (
-            <TiltCard key={i} exp={exp} />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function TiltCard({ exp }) {
-  const [t, setT] = useState({ rx: 0, ry: 0 });
-  const [lx, setLx] = useState(50);
-  const [ly, setLy] = useState(50);
-  const cardRef = useRef(null);
-
-  const onMove = (e) => {
-    const r = cardRef.current?.getBoundingClientRect();
-    if (!r) return;
-    const x = (e.clientX - r.left) / r.width;
-    const y = (e.clientY - r.top) / r.height;
-    setT({ rx: (0.5 - y) * 8, ry: (x - 0.5) * 8 });
-    setLx(x * 100);
-    setLy(y * 100);
-  };
-  const onLeave = () => setT({ rx: 0, ry: 0 });
-
-  return (
-    <article
-      ref={cardRef}
-      onMouseMove={onMove}
-      onMouseLeave={onLeave}
-      className="snap-start min-w-[84%] xs:min-w-[70%] sm:min-w-[380px] md:min-w-[420px] lg:min-w-[460px] relative"
-    >
-      <div className="absolute inset-0 rounded-3xl p-[1px] [background:conic-gradient(from_180deg,rgba(234,179,8,.35),rgba(56,189,248,.35),rgba(236,72,153,.35),rgba(234,179,8,.35))]" />
-      <div
-        className="relative h-[230px] sm:h-[260px] md:h-[280px] rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl overflow-hidden"
-        style={{
-          transform: `perspective(900px) rotateX(${t.rx}deg) rotateY(${t.ry}deg)`,
-          transition: "transform .15s ease",
-          transformStyle: "preserve-3d",
-        }}
-      >
-        <div
-          className="absolute inset-0"
-          style={{
-            background: `radial-gradient(180px circle at ${lx}% ${ly}%, rgba(255,255,255,.18), transparent 50%)`,
-            mixBlendMode: "screen",
-          }}
-        />
-        <div className={cn("absolute inset-0 opacity-30 mix-blend-screen bg-gradient-to-br", exp.color)} />
-        <div className="relative z-10 h-full p-6 sm:p-8 flex items-center justify-between gap-6">
-          <div>
-            <exp.icon className="w-12 h-12 mb-3 text-white drop-shadow" />
-            <h3 className="text-2xl sm:text-3xl font-extrabold">{exp.title}</h3>
-            <p className="mt-2 text-white/85 max-w-md">{exp.desc}</p>
-            <div className="mt-4 hidden sm:flex gap-2">
-              <span className="px-2.5 py-1 rounded-full text-[11px] bg-black/40 border border-white/15">Laser</span>
-              <span className="px-2.5 py-1 rounded-full text-[11px] bg-black/40 border border-white/15">Premium seats</span>
-              <span className="px-2.5 py-1 rounded-full text-[11px] bg-black/40 border border-white/15">HDR</span>
-            </div>
-          </div>
-          <a href="#" className="self-end mb-1 flex items-center gap-2 text-sm font-semibold text-white/90 hover:text-white">
-            Learn more <ArrowRight className="w-4 h-4" />
-          </a>
-        </div>
-      </div>
-    </article>
   );
 }
 
@@ -229,6 +114,104 @@ function NowShowingGrid({ items }) {
         </div>
       </div>
     </section>
+  );
+}
+
+/* ======================= Experiences (Tilt Rail - from V2) ======================= */
+function ExperiencesRail({ items }) {
+  const railRef = useRef(null);
+  return (
+    <section className="relative py-14 sm:py-20 bg-gradient-to-b from-black via-[#0A0E1E] to-gray-950">
+      {/* background decorations */}
+      <div className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(80%_60%_at_50%_10%,black,transparent)]">
+        <div className="absolute inset-0 opacity-[0.06] bg-[linear-gradient(to_right,rgba(255,255,255,.2)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,.2)_1px,transparent_1px)] bg-[size:42px_42px]" />
+        <div className="absolute -top-16 -left-10 w-72 h-72 rounded-full bg-cyan-500/10 blur-3xl" />
+        <div className="absolute -bottom-24 -right-16 w-96 h-96 rounded-full bg-orange-500/10 blur-3xl" />
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-end justify-between gap-6">
+          <div>
+            <p className="text-[11px] tracking-[0.25em] text-white/60 mb-2">EXPERIENCES</p>
+            <h2 className="text-3xl sm:text-4xl font-extrabold">Choose your format</h2>
+            <p className="mt-2 text-white/60 max-w-xl">
+              From seat-shaking thrills to precision audio, pick how you want to feel the movie.
+            </p>
+          </div>
+        </div>
+
+        <div
+          ref={railRef}
+          className="mt-8 flex gap-4 sm:gap-6 overflow-x-auto snap-x snap-mandatory pb-2 scroll-smooth [-ms-overflow-style:none] [scrollbar-width:none]"
+          style={{ scrollbarWidth: "none" }}
+        >
+          {items.map((exp, i) => (
+            <TiltCard key={i} exp={exp} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function TiltCard({ exp }) {
+  const [t, setT] = useState({ rx: 0, ry: 0 });
+  const [lx, setLx] = useState(50);
+  const [ly, setLy] = useState(50);
+  const cardRef = useRef(null);
+
+  const onMove = (e) => {
+    const r = cardRef.current?.getBoundingClientRect();
+    if (!r) return;
+    const x = (e.clientX - r.left) / r.width;
+    const y = (e.clientY - r.top) / r.height;
+    setT({ rx: (0.5 - y) * 8, ry: (x - 0.5) * 8 });
+    setLx(x * 100);
+    setLy(y * 100);
+  };
+  const onLeave = () => setT({ rx: 0, ry: 0 });
+
+  return (
+    <article
+      ref={cardRef}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+      className="relative w-full max-w-[320px] sm:max-w-[360px] md:max-w-[400px] lg:max-w-[440px] mx-auto"
+    >
+      <div className="absolute inset-0 rounded-3xl p-[1px] [background:conic-gradient(from_180deg,rgba(234,179,8,.35),rgba(56,189,248,.35),rgba(236,72,153,.35),rgba(234,179,8,.35))]" />
+      <div
+        className="relative h-[230px] sm:h-[260px] md:h-[280px] rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl overflow-hidden"
+        style={{
+          transform: `perspective(900px) rotateX(${t.rx}deg) rotateY(${t.ry}deg)`,
+          transition: "transform .15s ease",
+          transformStyle: "preserve-3d",
+        }}
+      >
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `radial-gradient(180px circle at ${lx}% ${ly}%, rgba(255,255,255,.18), transparent 50%)`,
+            mixBlendMode: "screen",
+          }}
+        />
+        <div className={cn("absolute inset-0 opacity-30 mix-blend-screen bg-gradient-to-br", exp.color)} />
+        <div className="relative z-10 h-full p-6 sm:p-8 flex items-center justify-between gap-6">
+          <div>
+            <exp.icon className="w-12 h-12 mb-3 text-white drop-shadow" />
+            <h3 className="text-2xl sm:text-3xl font-extrabold">{exp.title}</h3>
+            <p className="mt-2 text-white/85 max-w-md">{exp.desc}</p>
+            <div className="mt-4 hidden sm:flex gap-2">
+              <span className="px-2.5 py-1 rounded-full text-[11px] bg-black/40 border border-white/15">Laser</span>
+              <span className="px-2.5 py-1 rounded-full text-[11px] bg-black/40 border border-white/15">Premium seats</span>
+              <span className="px-2.5 py-1 rounded-full text-[11px] bg-black/40 border border-white/15">HDR</span>
+            </div>
+          </div>
+          <a href="#" className="self-end mb-1 flex items-center gap-2 text-sm font-semibold text-white/90 hover:text-white">
+            Learn more <ArrowRight className="w-4 h-4" />
+          </a>
+        </div>
+      </div>
+    </article>
   );
 }
 
@@ -313,52 +296,5 @@ function NewsletterSplit() {
         </div>
       </div>
     </section>
-  );
-}
-
-/* ======================= Footer (Minimal - from V2) ======================= */
-function FooterMinimal() {
-  return (
-    <footer className="py-10 bg-black border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-white/70">
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-8">
-          <div>
-            <h4 className="font-bold text-white mb-3">Company</h4>
-            <ul className="space-y-2">
-              <li><a href="#" className="hover:text-white">About Us</a></li>
-              <li><a href="#" className="hover:text-white">Careers</a></li>
-              <li><a href="#" className="hover:text-white">Press</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-bold text-white mb-3">Support</h4>
-            <ul className="space-y-2">
-              <li><a href="#" className="hover:text-white">Help Center</a></li>
-              <li><a href="#" className="hover:text-white">Contact</a></li>
-              <li><a href="#" className="hover:text-white">FAQs</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-bold text-white mb-3">Legal</h4>
-            <ul className="space-y-2">
-              <li><a href="#" className="hover:text-white">Privacy</a></li>
-              <li><a href="#" className="hover:text-white">Terms</a></li>
-              <li><a href="#" className="hover:text-white">Cookies</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-bold text-white mb-3">Follow</h4>
-            <ul className="space-y-2">
-              <li><a href="#" className="hover:text-white">Instagram</a></li>
-              <li><a href="#" className="hover:text-white">Twitter</a></li>
-              <li><a href="#" className="hover:text-white">Facebook</a></li>
-            </ul>
-          </div>
-        </div>
-        <div className="mt-8 pt-6 border-t border-white/5 text-center text-white/40">
-          © 2024 CINEPLEX. All rights reserved.
-        </div>
-      </div>
-    </footer>
   );
 }

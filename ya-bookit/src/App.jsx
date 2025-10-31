@@ -1,7 +1,7 @@
 // src/App.jsx
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route, useLocation, Link, Outlet } from "react-router-dom";
-import { LottieLoader } from "./components/loaders/LottieLoader";
+import { SeatMapLoader } from "./components/loaders/SeatMapLoader";
 import ShowtimesPage from "./pages/ShowtimesPage";
 import SeatSelectionPage from "./pages/SeatSelectionPage";
 import HeaderBar from "./components/Homepage/HeaderBar";
@@ -25,19 +25,22 @@ function ScrollToTop() {
   return null;
 }
 
-/* Loader just for the page body */
+/* Polished popcorn fallback */
+
 function BodyFallback() {
   return (
-    <div className="flex-1 grid place-items-center bg-neutral-950 text-white">
-      <LottieLoader
-        src="https://lottie.host/5ef439ac-e5e3-4146-a6b2-baf556464c28/CFaaH3yoiE.lottie"
-        size={420}
-        message="Loading…"
-        className="bg-transparent"
-      />
-    </div>
+    <SeatMapLoader
+      message="Finding showtimes & the best seats…"
+      className="bg-neutral-950 text-white"
+      size={72}          // bigger/smaller overall
+      rows={4}
+      cols={12}
+      withAisle
+      showLegend
+    />
   );
 }
+
 
 /* Friendly 404 page */
 function NotFound() {
