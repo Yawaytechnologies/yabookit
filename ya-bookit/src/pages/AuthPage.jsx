@@ -1,6 +1,5 @@
 import React, { useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
-import { motion } from "framer-motion";
 import {
   Mail,
   Lock,
