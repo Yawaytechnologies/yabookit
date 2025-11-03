@@ -5,7 +5,7 @@ import { SeatMapLoader } from "./components/loaders/SeatMapLoader";
 import ShowtimesPage from "./pages/ShowtimesPage";
 import SeatSelectionPage from "./pages/SeatSelectionPage";
 import HeaderBar from "./components/Homepage/HeaderBar";
-import SiteFooter from "./components/Homepage/SiteFooter";
+import Footer from "./components/Homepage/Footer";
 
 
 /* Lazy pages (must have default exports) */
@@ -15,6 +15,7 @@ const MovieDetails = lazy(() => import("./pages/MovieDetails"));
 // ⬇️ match your real file name
 const MovieOverviewPage = lazy(() => import("./pages/MovieOverview"));
 const EventPage = lazy(() => import("./pages/EventPage"));
+const StreamPage = lazy(() => import("./pages/StreamPage"));
 
 /* Smooth scroll to top on route change */
 function ScrollToTop() {
@@ -79,7 +80,7 @@ function Layout() {
         <Suspense fallback={<BodyFallback />}>
           <Outlet />
         </Suspense>
-        <SiteFooter />
+        <Footer />
       </div>
     </div>
   );
@@ -98,6 +99,7 @@ export default function App() {
           <Route path="/movie/:id/showtimes" element={<ShowtimesPage />} />
           <Route path="/movie/:id/seats" element={<SeatSelectionPage />} />
           <Route path="/events" element={<EventPage/>} />
+          <Route path="/stream" element={<StreamPage/>} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
