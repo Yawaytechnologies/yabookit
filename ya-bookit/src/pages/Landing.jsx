@@ -4,7 +4,7 @@ import HeroSection from "../components/Homepage/HeroSection";
 import ShowcaseSections from "../components/Homepage/ShowcaseSections";
 
 import YabookitStreamBanner from "../components/Homepage/YabookitStreamBanner";
-import Footer from "../components/Homepage/Footer";
+
 
 
 export default function MovieBookingHome() {
@@ -17,7 +17,7 @@ export default function MovieBookingHome() {
       
       <ShowcaseSections />
       
-      <Footer />
+     
      
     </div>
   );

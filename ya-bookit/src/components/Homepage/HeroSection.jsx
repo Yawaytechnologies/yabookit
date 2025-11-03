@@ -64,7 +64,7 @@ export default function HeroSection() {
   const currentMovie = HERO_MOVIES[currentSlide];
 
   return (
-    <section className="relative h-[85vh] sm:h-[88vh] lg:h-screen min-h-[620px] mt-16 sm:mt-20">
+    <section className="relative  h-[85vh] sm:h-[88vh] lg:h-screen min-h-[620px] mt-0">
       {/* Background + overlays */}
       <div className="absolute inset-0">
         <img
@@ -138,7 +138,7 @@ export default function HeroSection() {
               </button>
 
               <Link
-                to={`/movie/${currentMovie.id}`}
+                to={`/movies/${currentMovie.id}`}
                 className="flex items-center gap-3 px-8 py-4 rounded-full bg-white/10 backdrop-blur border border-white/20 hover:bg-white/20 transition font-bold"
               >
                 <span>BOOK NOW</span>

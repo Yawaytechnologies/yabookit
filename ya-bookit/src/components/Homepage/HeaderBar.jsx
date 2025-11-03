@@ -37,6 +37,7 @@ export default function HeaderBar() {
   const [merged, setMerged] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const ticking = useRef(false);
+  const menuBtnRef = useRef(null); // <-- JS-safe ref (no generics)
 
   useEffect(() => {
     const onScroll = () => {
@@ -52,7 +53,10 @@ export default function HeaderBar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const handleNavClick = () => setMenuOpen(false);
+  const handleNavClick = () => {
+    setMenuOpen(false);
+    if (menuBtnRef.current) menuBtnRef.current.focus();
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
@@ -65,36 +69,34 @@ export default function HeaderBar() {
               ? "mt-0 rounded-none border-white/5 shadow-[0_6px_24px_-12px_rgba(0,0,0,0.7)] bg-[#0B0F1E]/95"
               : "mt-3 rounded-2xl sm:rounded-3xl border-white/10 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.6)]",
           ].join(" ")}
-          style={{ willChange: "margin, border-radius, background-color, box-shadow" }}
+          style={{ willChange: "margin, border-radius" }}
         >
           <div
             className={[
               "flex items-center justify-between",
-              // SAME height/padding in both states -> no size jump
-              "h-14 sm:h-16 px-3 sm:px-6 lg:px-8",
+              // tighter bar height & padding on mobile
+              "h-12 sm:h-14 px-2 sm:px-4 lg:px-6",
             ].join(" ")}
           >
-            {/* logo (no size change on merge) */}
-            <Link to="/" className="flex items-center gap-2" aria-label="yabookit">
-              <img
-                src={Logo}
-                alt="yabookit logo"
-                className="h-11 sm:h-30 w-auto object-contain select-none pointer-events-none"
-                draggable="false"
-              />
-            
-            </Link>
+            {/* Logo: bigger on mobile, fits compact bar */}
+            <img
+  src={Logo}
+  alt="yabookit logo"
+  className="h-25 sm:h-[3rem] md:h-[3.5rem] lg:h-[6rem] w-auto object-contain select-none pointer-events-none"
+  draggable="false"
+/>
+
 
             {/* desktop nav */}
-            <nav className="hidden md:flex items-center gap-8">
+            <nav className="hidden md:flex items-center gap-7">
               <NavItem to="/" label="HOME" end />
               <NavItem to="/MovieDetails" label="MOVIES" />
-              <NavItem to="/events" label="Events" />
+              <NavItem to="/events" label="EVENTS" />
               <NavItem to="/offers" label="OFFERS" />
             </nav>
 
             {/* actions */}
-            <div className="flex items-center gap-2 sm:gap-4">
+            <div className="flex items-center gap-2 sm:gap-3">
               <Link
                 to="/MovieDetails"
                 className="hidden sm:inline-flex items-center rounded-full bg-yellow-400 text-black px-4 py-2 text-sm font-semibold shadow hover:bg-yellow-300 transition"
@@ -104,6 +106,7 @@ export default function HeaderBar() {
 
               {/* mobile menu button */}
               <button
+                ref={menuBtnRef}
                 type="button"
                 aria-expanded={menuOpen}
                 aria-controls="mobile-nav"
@@ -128,7 +131,7 @@ export default function HeaderBar() {
               </button>
 
               <Link
-                to="/login"
+                to="/auth"
                 className="hidden sm:inline text-white/90 hover:text-yellow-400 text-sm font-semibold"
               >
                 LOGIN
@@ -136,23 +139,24 @@ export default function HeaderBar() {
             </div>
           </div>
 
-          {/* mobile nav panel */}
+          {/* mobile nav panel — collapses in layout when closed */}
           <div
             id="mobile-nav"
+            aria-hidden={!menuOpen}
             className={[
-              "md:hidden overflow-hidden origin-top transition-transform duration-150 ease-out motion-reduce:transition-none",
-              menuOpen ? "scale-y-100" : "scale-y-0",
+              "md:hidden overflow-hidden transition-[max-height] duration-200 ease-out",
+              menuOpen ? "max-h-[70vh]" : "max-h-0 pointer-events-none",
             ].join(" ")}
           >
-            <div className="px-3 sm:px-6 pb-3">
+            <div className={["px-3 sm:px-6", menuOpen ? "py-3" : "py-0"].join(" ")}>
               <div className="grid gap-2 text-sm">
                 <NavItem to="/" label="HOME" end onClick={handleNavClick} />
                 <NavItem to="/MovieDetails" label="MOVIES" onClick={handleNavClick} />
-                <NavItem to="/theatres" label="THEATRES" onClick={handleNavClick} />
+                <NavItem to="/events" label="EVENTS" onClick={handleNavClick} />
                 <NavItem to="/offers" label="OFFERS" onClick={handleNavClick} />
-                <div className="flex gap-3 pt-2">
+                <div className="flex gap-2 pt-2">
                   <Link
-                    to="/buy"
+                    to="/MovieDetails"
                     onClick={handleNavClick}
                     className="inline-flex items-center rounded-full bg-yellow-400 text-black px-4 py-2 font-semibold hover:bg-yellow-300 transition-colors duration-150"
                   >

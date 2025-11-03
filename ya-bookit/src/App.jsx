@@ -5,7 +5,8 @@ import { SeatMapLoader } from "./components/loaders/SeatMapLoader";
 import ShowtimesPage from "./pages/ShowtimesPage";
 import SeatSelectionPage from "./pages/SeatSelectionPage";
 import HeaderBar from "./components/Homepage/HeaderBar";
-import SiteFooter from "./components/Homepage/SiteFooter";
+import Footer from "./components/Homepage/Footer";
+import AuthPage from "./pages/AuthPage";
 
 
 /* Lazy pages (must have default exports) */
@@ -79,7 +80,7 @@ function Layout() {
         <Suspense fallback={<BodyFallback />}>
           <Outlet />
         </Suspense>
-        <SiteFooter />
+        <Footer />
       </div>
     </div>
   );
@@ -99,6 +100,7 @@ export default function App() {
           <Route path="/movie/:id/seats" element={<SeatSelectionPage />} />
           <Route path="/events" element={<EventPage/>} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/auth" element={<AuthPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
