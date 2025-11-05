@@ -31,8 +31,8 @@ const MOVIES = [
     genres: ["Action", "Thriller"],
     languages: ["Tamil", "Hindi"],
     formats: ["2D"],
-    poster:
-      "https://images.unsplash.com/photo-1542202229-7d93c33f5d07?q=80&w=800&auto=format&fit=crop",
+      poster:
+    "https://images.weserv.nl/?url=media.cinemaexpress.com/cinemaexpress/2024-07/065cb5a4-40a2-4a25-b801-10ba23f200cc/Aaryan.jpg&w=600&h=900&fit=cover",
   },
   {
     id: "bison",
@@ -43,8 +43,8 @@ const MOVIES = [
     genres: ["Action", "Drama"],
     languages: ["Tamil", "Telugu"],
     formats: ["2D", "IMAX 2D"],
-    poster:
-      "https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?q=80&w=800&auto=format&fit=crop",
+   poster:
+    "https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?auto=format&fit=crop&w=600&h=900&q=80", // 2:3 (600x900)
   },
   {
     id: "dude",

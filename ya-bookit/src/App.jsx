@@ -6,6 +6,7 @@ import ShowtimesPage from "./pages/ShowtimesPage";
 import SeatSelectionPage from "./pages/SeatSelectionPage";
 import HeaderBar from "./components/Homepage/HeaderBar";
 import Footer from "./components/Homepage/Footer";
+import AuthPage from "./pages/AuthPage";
 
 
 /* Lazy pages (must have default exports) */
@@ -101,6 +102,7 @@ export default function App() {
           <Route path="/events" element={<EventPage/>} />
           <Route path="/stream" element={<StreamPage/>} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/auth" element={<AuthPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

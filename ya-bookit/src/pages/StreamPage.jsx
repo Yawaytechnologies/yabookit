@@ -18,7 +18,7 @@ const heroItems = [
     synopsis:
       "When Ashley asks for a divorce, the good-natured Carey runs to his friends for support. Their secret to happiness is an open marriage—until Carey crosses a line and everything unravels.",
     poster: "splitsville.avif",
-    backdrop: "spilt.avif",
+    backdrop: "spilt.png",
   },
   {
     title: "Neon Nights",
@@ -29,7 +29,7 @@ const heroItems = [
     synopsis:
       "A rookie cop chases a phantom hacker through a city that never sleeps.",
     poster: "neon.avif",
-    backdrop: "Neon1.avif",
+    backdrop: "Neon1.png.jpg",
   },
 ];
 
