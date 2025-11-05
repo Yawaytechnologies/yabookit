@@ -6,6 +6,7 @@ import ShowtimesPage from "./pages/ShowtimesPage";
 import SeatSelectionPage from "./pages/SeatSelectionPage";
 import HeaderBar from "./components/Homepage/HeaderBar";
 import Footer from "./components/Homepage/Footer";
+import Footer from "./components/Homepage/Footer";
 import AuthPage from "./pages/AuthPage";
 
 
@@ -16,6 +17,7 @@ const MovieDetails = lazy(() => import("./pages/MovieDetails"));
 // ⬇️ match your real file name
 const MovieOverviewPage = lazy(() => import("./pages/MovieOverview"));
 const EventPage = lazy(() => import("./pages/EventPage"));
+const StreamPage = lazy(() => import("./pages/StreamPage"));
 
 /* Smooth scroll to top on route change */
 function ScrollToTop() {
@@ -99,6 +101,7 @@ export default function App() {
           <Route path="/movie/:id/showtimes" element={<ShowtimesPage />} />
           <Route path="/movie/:id/seats" element={<SeatSelectionPage />} />
           <Route path="/events" element={<EventPage/>} />
+          <Route path="/stream" element={<StreamPage/>} />
           <Route path="*" element={<NotFound />} />
           <Route path="/auth" element={<AuthPage />} />
         </Route>
