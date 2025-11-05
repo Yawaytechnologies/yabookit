@@ -6,7 +6,6 @@ import ShowtimesPage from "./pages/ShowtimesPage";
 import SeatSelectionPage from "./pages/SeatSelectionPage";
 import HeaderBar from "./components/Homepage/HeaderBar";
 import Footer from "./components/Homepage/Footer";
-import Footer from "./components/Homepage/Footer";
 import AuthPage from "./pages/AuthPage";
 
 

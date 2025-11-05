@@ -92,7 +92,7 @@ export default function HeaderBar() {
               <NavItem to="/" label="HOME" end />
               <NavItem to="/MovieDetails" label="MOVIES" />
               <NavItem to="/events" label="EVENTS" />
-              <NavItem to="/offers" label="OFFERS" />
+              <NavItem to="/stream" label="STREAM" />
             </nav>
 
             {/* actions */}
@@ -153,7 +153,7 @@ export default function HeaderBar() {
                 <NavItem to="/" label="HOME" end onClick={handleNavClick} />
                 <NavItem to="/MovieDetails" label="MOVIES" onClick={handleNavClick} />
                 <NavItem to="/events" label="EVENTS" onClick={handleNavClick} />
-                <NavItem to="/offers" label="OFFERS" onClick={handleNavClick} />
+                <NavItem to="/stream" label="STREAM" onClick={handleNavClick} />
                 <div className="flex gap-2 pt-2">
                   <Link
                     to="/MovieDetails"
