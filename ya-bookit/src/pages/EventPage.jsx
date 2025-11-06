@@ -93,7 +93,7 @@ export default function Events() {
   ];
 
   const ARTISTS = [
-    { name: "Arivu", img: "https://images.unsplash.com/photo-1519340333755-5063ad6c6585?auto=format&fit=crop&w=800&q=80" },
+    { name: "Arivu", img: "arivu.webp" },
     { name: "Robb Bank$", img: "https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=800&q=80" },
     { name: "Meba Ofilia", img: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80" },
     { name: "Ski Mask the Slump God", img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80" },
