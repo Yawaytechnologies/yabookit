@@ -44,8 +44,7 @@ const MOVIES = [
     languages: ["Tamil", "Telugu"],
     formats: ["2D", "IMAX 2D"],
    poster:
-    "https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?auto=format&fit=crop&w=600&h=900&q=80", // 2:3 (600x900)
-  },
+"bison.avif"  },
   {
     id: "dude",
     title: "DUDE",
@@ -55,9 +54,7 @@ const MOVIES = [
     genres: ["Drama"],
     languages: ["Tamil", "Malayalam"],
     formats: ["2D"],
-    poster:
-      "https://images.unsplash.com/photo-1606117330965-8f0746fe8c86?q=80&w=800&auto=format&fit=crop",
-  },
+    poster:"Dude.avif"  },
   {
     id: "aan-paavam",
     title: "AAN PAAVAM POLLATHATHU",
@@ -82,8 +79,7 @@ const MOVIES = [
     languages: ["English", "Hindi"],
     formats: ["2D", "IMAX 2D"],
     poster:
-      "https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=800&auto=format&fit=crop",
-  },
+"dune.avif"  },
   {
     id: "oppenheimer",
     title: "OPPENHEIMER",
@@ -130,8 +126,7 @@ const MOVIES = [
     languages: ["Kannada", "Tamil", "Telugu", "Hindi"],
     formats: ["2D", "IMAX 2D"],
     poster:
-      "https://images.unsplash.com/photo-1542204165-65bf26472b9b?q=80&w=800&auto=format&fit=crop",
-  },
+"kgf2.avif"  },
   {
     id: "leo",
     title: "LEO",
@@ -142,8 +137,7 @@ const MOVIES = [
     languages: ["Tamil", "Telugu", "Hindi"],
     formats: ["2D", "IMAX 2D"],
     poster:
-      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=800&auto=format&fit=crop",
-  },
+"leo.avif"  },
   {
     id: "96",
     title: "96",
@@ -166,8 +160,7 @@ const MOVIES = [
     languages: ["Malayalam"],
     formats: ["2D"],
     poster:
-      "https://images.unsplash.com/photo-1520697222865-452e4ef4b0f4?q=80&w=800&auto=format&fit=crop",
-  },
+"Drishyam.avif"  },
   {
     id: "bahubali",
     title: "BAAHUBALI: THE BEGINNING",
@@ -202,8 +195,7 @@ const MOVIES = [
     languages: ["English", "Hindi"],
     formats: ["2D", "IMAX 2D"],
     poster:
-      "https://images.unsplash.com/photo-1502139214983-d4562b00f5ee?q=80&w=800&auto=format&fit=crop",
-  },
+"joker.avif"  },
 ];
 
 
