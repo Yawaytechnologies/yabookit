@@ -1,62 +1,7 @@
 import React from "react";
-import { motion } from "framer-motion";
 
 /* ========= Helpers ========= */
 const _cn = (...c) => c.filter(Boolean).join(" ");
-
-const fadeUp = {
-  initial: { opacity: 0, y: 16 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-80px" },
-  transition: { duration: 0.5 }
-};
-
-const hoverLift = {
-  whileHover: { y: -2, scale: 1.02 },
-  whileTap: { scale: 0.98 }
-};
-
-const LinkItem = ({ href = "#", children }) => (
-  <li>
-    <motion.a
-      {...hoverLift}
-      href={href}
-      className="inline-flex items-center gap-2 text-white/70 hover:text-white transition-colors"
-    >
-      {children}
-    </motion.a>
-  </li>
-);
-
-const Section = ({ title, children, delay = 0 }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 10 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, amount: 0.2 }}
-    transition={{ duration: 0.45, delay }}
-  >
-    <h4 className="font-semibold text-white tracking-wide mb-4 flex items-center gap-2">
-      <span className="inline-block w-1.5 h-4 bg-yellow-400 rounded" />
-      {title}
-    </h4>
-    <ul className="space-y-2 text-sm">{children}</ul>
-  </motion.div>
-);
-
-function SocialIcon({ label, children, href = "#" }) {
-  return (
-    <motion.a
-      {...hoverLift}
-      href={href}
-      aria-label={label}
-      className="relative w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 flex items-center justify-center transition-colors focus:outline-none focus:ring-2 focus:ring-yellow-400/40"
-    >
-      {/* ring pulse */}
-      <span className="absolute inset-0 rounded-full shadow-[0_0_40px_2px_rgba(250,204,21,0.05)]" />
-      {children}
-    </motion.a>
-  );
-}
 
 /* ========= Inline Icons ========= */
 const IconFacebook = () => (
@@ -82,6 +27,42 @@ const IconYoutube = () => (
     <path d="M23 7.5s-.2-1.6-.8-2.3c-.8-.9-1.7-.9-2.1-1C17.6 4 12 4 12 4s-5.6 0-8.1.2c-.4.1-1.3.1-2.1 1C1.2 5.9 1 7.5 1 7.5S.8 9.5.8 11.4v1.3c0 1.9.2 3.9.2 3.9s.2 1.6.8 2.3c.8.9 1.9.8 2.4.9C6.3 19.9 12 20 12 20s5.6 0 8.1-.2c.4-.1 1.3-.1 2.1-1 .6-.7.8-2.3.8-2.3s.2-2 .2-3.9v-1.3c0-1.9-.2-3.9-.2-3.9ZM9.8 15.2v-6l6 3-6 3Z" fill="currentColor" />
   </svg>
 );
+
+/* ========= Simple elements (no framer-motion) ========= */
+const LinkItem = ({ href = "#", children }) => (
+  <li>
+    <a
+      href={href}
+      className="inline-flex items-center gap-2 text-white/70 hover:text-white transition-colors"
+    >
+      {children}
+    </a>
+  </li>
+);
+
+const Section = ({ title, children }) => (
+  <div>
+    <h4 className="font-semibold text-white tracking-wide mb-4 flex items-center gap-2">
+      <span className="inline-block w-1.5 h-4 bg-yellow-400 rounded" />
+      {title}
+    </h4>
+    <ul className="space-y-2 text-sm">{children}</ul>
+  </div>
+);
+
+function SocialIcon({ label, children, href = "#" }) {
+  return (
+    <a
+      href={href}
+      aria-label={label}
+      className="relative w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 flex items-center justify-center transition-colors focus:outline-none focus:ring-2 focus:ring-yellow-400/40"
+    >
+      {/* ring pulse */}
+      <span className="absolute inset-0 rounded-full shadow-[0_0_40px_2px_rgba(250,204,21,0.05)]" />
+      {children}
+    </a>
+  );
+}
 
 /* ========= Select ========= */
 const Select = ({ label, children, id }) => (
@@ -111,36 +92,26 @@ const Select = ({ label, children, id }) => (
 /* ========= Ticket CTA (movie-booking themed) ========= */
 function TicketCTA() {
   return (
-    <motion.div
-      {...fadeUp}
-     
-    >
+    <div>
       {/* perforation dots */}
-    
       <div className="pointer-events-none absolute left-28 top-0 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-black border border-white/15" />
       <div className="pointer-events-none absolute left-28 bottom-0 h-3 w-3 -translate-x-1/2 translate-y-1/2 rounded-full bg-black border border-white/15" />
-
-     
-    </motion.div>
+    </div>
   );
 }
 
-/* ========= Cinemas Marquee ========= */
+/* ========= Cinemas Marquee (static without animation) ========= */
 function CinemasMarquee() {
   const items = ["IMAX", "4DX", "PVR", "INOX", "Cinepolis", "Dolby Atmos", "ScreenX", "Luxe"];
   return (
     <div className="relative overflow-hidden">
-      <motion.div
-        className="flex gap-8 whitespace-nowrap text-white/50 text-xs sm:text-sm"
-        animate={{ x: [0, -400] }}
-        transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-      >
+      <div className="flex gap-8 whitespace-nowrap text-white/50 text-xs sm:text-sm">
         {[...items, ...items].map((it, i) => (
           <span key={i} className="inline-flex items-center gap-2">
             <span className="h-1 w-1 rounded-full bg-white/30" />{it}
           </span>
         ))}
-      </motion.div>
+      </div>
     </div>
   );
 }
@@ -150,17 +121,13 @@ export default function Footer() {
   return (
     <footer className="relative bg-black text-white/80 border-t border-white/10 overflow-hidden">
       {/* Ambient spotlights (subtle) */}
-      <motion.div
+      <div
         aria-hidden
         className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-yellow-400/10 blur-3xl"
-        animate={{ opacity: [0.2, 0.35, 0.2] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       />
-      <motion.div
+      <div
         aria-hidden
         className="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-white/10 blur-3xl"
-        animate={{ opacity: [0.1, 0.25, 0.1] }}
-        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
@@ -168,13 +135,10 @@ export default function Footer() {
         <TicketCTA />
 
         {/* Top grid */}
-        <motion.div
+        <div
           className="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-10"
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.2 }}
         >
-          <Section title="Company" delay={0.05}>
+          <Section title="Company">
             <LinkItem href="#">About Us</LinkItem>
             <LinkItem href="#">Careers</LinkItem>
             <LinkItem href="#">Press</LinkItem>
@@ -182,36 +146,36 @@ export default function Footer() {
             <LinkItem href="#">Corporate</LinkItem>
           </Section>
 
-          <Section title="Theatres" delay={0.1}>
+          <Section title="Theatres">
             <LinkItem href="#">Partner with Us</LinkItem>
             <LinkItem href="#">Theatre Owners</LinkItem>
             <LinkItem href="#">Advertise</LinkItem>
             <LinkItem href="#">Corporate Bookings</LinkItem>
           </Section>
 
-          <Section title="Movies" delay={0.15}>
+          <Section title="Movies">
             <LinkItem href="#">Now Showing</LinkItem>
             <LinkItem href="#">Coming Soon</LinkItem>
             <LinkItem href="#">Movie Reviews</LinkItem>
             <LinkItem href="#">Trailers</LinkItem>
           </Section>
 
-          <Section title="Support" delay={0.2}>
+          <Section title="Support">
             <LinkItem href="#">Help Center</LinkItem>
             <LinkItem href="#">Contact Us</LinkItem>
             <LinkItem href="#">Feedback</LinkItem>
             <LinkItem href="#">Report Issue</LinkItem>
           </Section>
 
-          <Section title="Legal" delay={0.25}>
+          <Section title="Legal">
             <LinkItem href="#">Terms of Service</LinkItem>
             <LinkItem href="#">Privacy Policy</LinkItem>
             <LinkItem href="#">Cookie Policy</LinkItem>
             <LinkItem href="#">Refund Policy</LinkItem>
           </Section>
-        </motion.div>
+        </div>
 
-        {/* Divider with animated gradient */}
+        {/* Divider with gradient */}
         <div className="mt-8 h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
         {/* Utility row */}
